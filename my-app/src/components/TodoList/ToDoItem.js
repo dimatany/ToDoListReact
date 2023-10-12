@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleComplete, deleteTodo, updateTodo} from '../../redux/todoSlice';
+import SVGPen from './SVGPen';
 
 const ToDoItem = ({ id, title, text, completed }) => {
 	const dispatch = useDispatch();
@@ -41,7 +42,8 @@ const ToDoItem = ({ id, title, text, completed }) => {
 					<button
 						className='btn btn-outline-info m-2'
 						onClick={handleUpdateTodo}
-					>&#8634;</button>
+					><SVGPen fill='#202125'/>
+					</button>
 					<button
 						className='btn btn-danger'
 						onClick={handleDeleteClick}

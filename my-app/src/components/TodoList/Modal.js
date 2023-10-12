@@ -5,11 +5,13 @@ const Modal = ({ isOpen, onClose, children }) => {
 	if (!isOpen) return null;
 	
 	return (
-		<div className={styles.modal}>
-			<button className={styles.closeButton} onClick={onClose}>
-				Close
-			</button>
-			{children}
+		<div className={styles.modalOverlay}>
+			<div className={styles.modal}>
+				<button className={styles.closeButton} onClick={onClose}>
+					Close
+				</button>
+				{children}
+			</div>
 		</div>
 	);
 };

@@ -10,7 +10,6 @@ const ToDoItem = ({ id, title, text, completed }) => {
 	const handleCheckboxClick = () => {
 		dispatch(toggleComplete({ id, completed: !completed }));
 	};
-	
 	const handleDeleteClick = () => {
 		dispatch(deleteTodo({ id }));
 	};

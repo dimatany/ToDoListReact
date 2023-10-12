@@ -65,10 +65,11 @@ export const todoSlice = createSlice({
 			return state.filter((todo) => todo.id !== action.payload.id);
 		},
 		//////////////////////////////////
-		updateTodo: (state, action) => {
-			const { id, text } = action.payload;
+		updateTodo: (state, action,...args) => {
+			const { id, text, title } = action.payload;
 			const todoToUpdate = state.find(todo => todo.id === id);
 			if (todoToUpdate) {
+				todoToUpdate.title = title;
 				todoToUpdate.text = text;
 			}
 		},

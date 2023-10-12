@@ -1,27 +1,26 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleComplete, deleteTodo, updateTodo} from '../../redux/todoSlice';
 import SVGPen from './SVGPen';
+import {setModalVisibility, setText, setTitle, setTodoId} from '../../redux/todoCreateSlice'
 
 const ToDoItem = ({ id, title, text, completed }) => {
 	const dispatch = useDispatch();
-	const [newTodoText, setNewTodoText] = useState('');
-	const [editingTodoId, setEditingTodoId] = useState(null);
-	
+
 	const handleCheckboxClick = () => {
 		dispatch(toggleComplete({ id, completed: !completed }));
 	};
 	const handleDeleteClick = () => {
 		dispatch(deleteTodo({ id }));
 	};
-	
+
 	const handleUpdateTodo = () => {
-		if (newTodoText.trim() === '') return;
-		dispatch(updateTodo({ id: editingTodoId, text: newTodoText }));
-		setEditingTodoId(null);
-		setNewTodoText('');
+		dispatch(setModalVisibility(true))
+		dispatch(setTodoId(id))
+		dispatch(setTitle(title))
+		dispatch(setText(text))
 	};
-	
+
 	return (
 		<li className={`list-group-item ${completed && 'list-group-item-success'}`}>
 			<div className='d-flex justify-content-between'>
@@ -49,7 +48,7 @@ const ToDoItem = ({ id, title, text, completed }) => {
 						onClick={handleDeleteClick}
 					>&#215;</button>
 				</div>
-				
+
 			</div>
 		</li>
 	);
